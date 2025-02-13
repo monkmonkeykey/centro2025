@@ -14,9 +14,13 @@ void setup() {
   size(1280, 720);
   colorMode(HSB, 360, 100, 100);
   fondo = loadImage("0.jpg"); //Cargamos la imagen a utilizar
-  frameRate(500);
+  frameRate(1500);
+  textSize(20);
+  dibujaLetras();
 }
 void draw() {
+
+
   if (key == 'l') {
     dibujaLetras();
   } else  if (key == 'p') {
@@ -29,12 +33,13 @@ void dibujaLetras () {
   pushMatrix();
   posX = int(random(0, width));
   posY = int(random(0, height));
+  translate(posX, posY);//500,10
   //fondo.get, me permite obtener el color concreto de un pixel
   colorActual = fondo.get(posX, posY);
   fill(colorActual);
   indiceLetra = int(random(0, letras.length));
-  text(letras[indiceLetra], posX, posY);
-  rotate(radians(frameCount%360));
+  rotate(radians(random(360)));
+  text(letras[indiceLetra], 0, 0); // 500,10
   popMatrix();
 }
 
