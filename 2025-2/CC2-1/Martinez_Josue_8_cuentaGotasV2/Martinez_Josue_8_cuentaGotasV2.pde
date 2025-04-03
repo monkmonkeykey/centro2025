@@ -3,6 +3,7 @@ int posX, posY;
 int diametro = 75;
 color colorPuntero; //Aquí guardaremos el color de la posición del cursor
 color[] colores = new color[4];
+String []codHexColores = {"", "", "", ""};
 int indice;
 void setup() {
   size(960, 640);
@@ -28,20 +29,39 @@ void cuentaGotas() {
   colorPuntero = imagen.get(posX, posY);
   fill(colorPuntero);
   ellipse(posX, posY, diametro, diametro);
+
   fill(colores[0]);
   rect(0, imagen.height, width/4, 100);
-
+  textoHexadecimal(0, width/10, imagen.height + 50);
   fill(colores[1]);
   rect(width/4, imagen.height, width/4, 100);
-
+  textoHexadecimal(0, width/10+ width/4, imagen.height + 50);
   fill(colores[2]);
   rect(width/4*2, imagen.height, width/4, 100);
-
+  textoHexadecimal(0, width/10+ width/4 *2, imagen.height + 50);
   fill(colores[3]);
   rect(width/4*3, imagen.height, width/4, 100);
+  textoHexadecimal(0, width/10+ width/4*3, imagen.height + 50);
 }
 //Eventos | Escucha si el botón del mouse ha dejado de ser presionado
 void mouseReleased() {
   colores[indice%4] = colorPuntero;
+  codHexColores[indice%4]= "#" + hex( colorPuntero);
   indice++; //indice aumente su valor en 1
+}
+
+void keyPressed() {
+  if (key == 's') {
+    saveFrame("muestra.jpg");
+  }
+}
+
+void textoHexadecimal(int indiceInt, int x, int y) {
+  textSize(12);
+  fill(0, 50);
+  noStroke();
+  rect(x, y, 60, -10);
+  fill(255);
+
+  text(codHexColores[indice], x, y);
 }

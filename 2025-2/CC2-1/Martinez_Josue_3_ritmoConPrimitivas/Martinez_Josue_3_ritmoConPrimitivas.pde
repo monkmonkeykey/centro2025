@@ -54,7 +54,6 @@ void draw() {
   ellipse(440, height/2, 180, 180);
   fill(340, 80, 90, 15);
   ellipse(460, height/2, 190, 190);
-
   fill(360, 80, 90, 10);
   ellipse(480, height/2, 200, 200);
 }
