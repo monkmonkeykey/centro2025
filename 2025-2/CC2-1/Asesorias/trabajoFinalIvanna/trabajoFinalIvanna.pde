@@ -1,27 +1,41 @@
-PImage fondo;
-boolean hambre = true;//Guarda un estado de verdad. El cual puede ser false o true
-int posX, posY;
-float diametro = 7;
-int espacio = 9;
-color colorActual; //Permite este dato guardar un color
-int numeroAleatorio;
+int numFramesRetratos = 3;//Definimos el número de frames
+PImage [] Retratos = new PImage [numFramesRetratos];
 
+
+int posX, posY;
+int espacio = 5;//pixeles que se desplaza el Retratosz
+int tamañoPixel = 5;
+color colorActual; //Permite este dato guardar un color
+int imagenActual;
+int numeroAleatorio;
 void setup() {
-  //fullScreen();
-  size(1280, 720); //1920,1080
-  colorMode(HSB, 360, 100, 100);//Definimos el modo de color en HSB
-  fondo = loadImage("0.jpg"); //Cargar mi imagen
+  size(600, 600);
+  //imageMode(CENTER);
+  for (int i = 0; i <numFramesRetratos; i++) {//nombre de imagenes Retratos1.png...
+    Retratos[i] = loadImage("retrato"+ (i + 1) + ".jpg");
+  }
+
+
+  for (int i = 0; i <numFramesRetratos; i++) {
+    Retratos[i].resize(Retratos[i].width/1, Retratos[i].height/1);
+  }
+  frameRate(140);
+
   posX = width/2;
-  posY = height/2;
-  //image(fondo, 0, 0);
+  posY= height/2;
+
+  background(170);
+  imagenActual = int(random(0, numFramesRetratos));
+
+  //image (Retratos[imagenActual], posX, posY);
+  rectMode(CENTER);
   noStroke();
 }
 
 void draw() {
-  // == | Igual qué
-  //Si... hambre es igual a verdadero, entonces ejecuta el código
   pixelear();
 }
+
 
 void pixelear() {
   numeroAleatorio = int(random(4));//obtener de forma aleatorio valores en 0-4
@@ -38,9 +52,9 @@ void pixelear() {
 
     posY = posY + espacio;
   }
-  colorActual = fondo.get(posX, posY);
+  colorActual =Retratos[imagenActual].get(posX, posY);
   fill(colorActual);
-  ellipse(posX, posY, diametro, diametro);
+  rect(posX, posY, tamañoPixel, tamañoPixel);
 
   //Condición que permite colisiones en los bordes.
   if (posX >= width) {

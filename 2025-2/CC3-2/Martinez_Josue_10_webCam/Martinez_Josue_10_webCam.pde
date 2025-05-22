@@ -8,7 +8,7 @@ void setup() {
   size(1280, 720);
   columnas = width/escala;
   filas = height/escala;
-  webcam = new Capture(this, camaras[1]); //Creamos la cámara y definimos la res
+  webcam = new Capture(this, camaras[0]); //Creamos la cámara y definimos la res
   webcam.resize(columnas, filas);
   for (int i = 0; i < camaras.length; i++) {
     println(camaras[i]);

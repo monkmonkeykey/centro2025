@@ -27,8 +27,8 @@ void setup() {
 
 void draw() {
   float amplitud = microfono.left.level();
-  amplitud = map(amplitud, 0.025, 0.2, 0.002, 0.02);
-  fill(0, 7);
+  amplitud = map(amplitud, 0.01, 0.2, 0.002, 0.02);
+  fill(0, 1);
   rect(0, 0, width, height);
   offSet = offSet + amplitud; //Contador
   posY = noise(offSet) * height;
