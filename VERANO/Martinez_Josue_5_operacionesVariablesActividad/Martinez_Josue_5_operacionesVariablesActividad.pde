@@ -1,0 +1,13 @@
+int a = 5;
+int b = 18;
+int c = 15;
+int d = 25;
+a = a + 3;
+b = b + 4 - a;
+c = a + b + c;
+a = a + c;
+b = 4;
+println("a", a);
+println("b", b);
+println("c", c);
+println("d", d);
