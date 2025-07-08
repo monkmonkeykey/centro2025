@@ -7,6 +7,8 @@ boolean dibujandoDelfin = false;
 int contadorFrameDelfin;
 PImage fondo;
 int audioActual;
+
+
 void setup() {
   size(1280, 960);
   //fullScreen();

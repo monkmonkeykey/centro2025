@@ -1,50 +1,58 @@
-PImage img, nuevaImg;
-float tiempo = 0;
+import processing.sound.*;
+
+PImage [] gaviotas = new PImage [10];
+SoundFile [] audiosDelfin = new SoundFile[3];
+int posX, posY;
+boolean dibujandoDelfin = false;
+int contadorFrameDelfin;
+PImage fondo;
+int audioActual;
+
 
 void setup() {
-  size(1280, 720);
-  img = loadImage("Torres_Hiram_Boceto1.jpg");
-  nuevaImg = createImage(img.width, img.height, RGB);
-  noSmooth(); // para conservar detalle de pixelado si es deseado
+  size(1280, 960);
+  //fullScreen();
+  frameRate(24);
+  fondo = loadImage("Ocean Horizon.jpg");
+
+  /*for (int i = 0; i < audiosDelfin.length; i++) {
+   audiosDelfin[i] = new SoundFile(this, "gaviotas"+str(i+1)+ ".mp3");
+   }
+   */
+  fondo.resize(fondo.width*2, fondo.height*2);
+
+  for (int i = 0; i < gaviotas.length; i++) {
+    gaviotas[i] = loadImage("218705790c734df9892bae3218df71b1ayctZ2zfqZNnrHNF-" + str(i) + ".png");
+  }
 }
 
 void draw() {
-  img.loadPixels();
-  nuevaImg.loadPixels();
-
-  for (int y = 0; y < img.height; y++) {
-    for (int x = 0; x < img.width; x++) {
-      int i = x + y * img.width;
-      color c = img.pixels[i];
-
-      float r = red(c);
-      float g = green(c);
-      float b = blue(c);
-
-      float newR = r;
-      float newG = g;
-      float newB = b;
-
-      if (b > r && b > g) {
-        newR = map(b, 0, 255, r, 255);
-        newG = map(b, 0, 255, g, 100);
-        newB = map(b, 0, 255, b, 150);
-      }
-
-      // Aquí hacemos que el cambio dependa del ruido + tiempo
-      float n = noise(x * 0.01, y * 0.01, tiempo);
-      float t = constrain(n, 0, 1);
-
-      float finalR = lerp(r, newR, t);
-      float finalG = lerp(g, newG, t);
-      float finalB = lerp(b, newB, t);
-
-      nuevaImg.pixels[i] = color(finalR, finalG, finalB);
-    }
+  imageMode(CORNER);
+  image(fondo, 0, 0);
+  posX = mouseX;
+  posY = mouseY;
+  // dibujaDelfin();
+  if (dibujandoDelfin == true) {
+    dibujaDelfin();
+  } else {
   }
+}
 
-  nuevaImg.updatePixels();
-  image(nuevaImg, 0, 0, width, height);
+void dibujaDelfin() {
+  imageMode(CENTER);
+  //audioActual = int(random(3));
 
-  tiempo += 0.01; // velocidad del avance orgánico
+  // audiosDelfin[audioActual].play();
+  // audiosDelfin[audioActual].amp(0.1);
+
+  image(gaviotas[frameCount%gaviotas.length], posX, posY);
+  contadorFrameDelfin++;
+  if (contadorFrameDelfin >= gaviotas.length) {
+    contadorFrameDelfin = 0;
+    dibujandoDelfin = false;
+  }
+}
+
+void mousePressed() {
+  dibujandoDelfin = true;
 }
