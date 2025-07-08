@@ -2,7 +2,7 @@ PImage fondo;
 int posX, posY;
 color colorObtenido;
 int diametro = 5;
-char []caracteres = {'A','l','e','x','a'};
+char []caracteres = {'A', 'l', 'e', 'x', 'a'};
 void setup() {
   size(648, 943);
   fondo = loadImage("2.jpeg");
@@ -17,6 +17,6 @@ void draw() {
   posY = int(random(height));
   colorObtenido = fondo.get(posX, posY);
   fill(colorObtenido);
-  caracterActual = 
-  text(caracterActual, posX, posY);
+
+  text(caracteres[int(random(caracteres.length))], posX, posY);
 }
