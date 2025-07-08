@@ -18,6 +18,7 @@ ArrayList<float[]> puntosGraves = new ArrayList<float[]>();  // [x, y, vx, vy, t
 
 void setup() {
   fullScreen();
+  //size(600, 600);
   minim = new Minim(this);
   mic = minim.getLineIn(Minim.MONO, 2048);
   player = minim.loadFile("0.mp3", 2048);
@@ -73,13 +74,14 @@ void draw() {
   translate(width/2, height/2);
 
   // Dibujar puntos graves
-  fill(0, 0, 100, 80);
+  // fill(0, 0, 100, 80);
   noStroke();
   for (int i = puntosGraves.size() - 1; i >= 0; i--) {
     float[] p = puntosGraves.get(i);
     p[0] += p[2];  // x += vx
     p[1] += p[3];  // y += vy
     noStroke();
+    fill(hueColor, 100, 100, 80);
     ellipse(p[0], p[1], p[4], p[4]);
 
     if (dist(0, 0, p[0], p[1]) > max(width/2, height/2)) {
@@ -88,9 +90,9 @@ void draw() {
   }
 
   // Círculo central según graves
-  float diametro = map(suavizadoGraves, 0, 15, 100, height/4);
-  float diametroNuevo = constrain(diametro, 100, height/2);
-  hueColor = map(suavizadoMedios, 0, 15, 180, 360);
+  float diametro = map(suavizadoGraves, 0, 15, 100, height/4);//modificas el diametro de la elipse
+  float diametroNuevo = constrain(diametro, 100, height/2);//modificas el diametro de la elipse
+  hueColor = map(suavizadoMedios, 0, 15, 180, 360);//Rangos de color en circunferencia central
   fill(hueColor, 80, 100);
   ellipse(0, 0, diametroNuevo, diametroNuevo);
 
@@ -120,9 +122,9 @@ void draw() {
   textAlign(LEFT, TOP);
 
   if (modo == "mic") {
-    textoActual = "Presiona ('a' para audio)";
+    textoActual = "Presiona ('a' para pasar al modo audio)";
   } else {
-    textoActual = "Presiona ('m' para microfono)";
+    textoActual = "Presiona ('m' para pasar al modo microfono)";
   }
   text(textoActual, -width/2 + 10, -height/2 + 10);
 }
