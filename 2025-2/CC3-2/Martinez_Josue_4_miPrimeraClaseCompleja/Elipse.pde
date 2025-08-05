@@ -74,6 +74,7 @@ class Elipse {//Definimos el bloque de la clase Elipse
     separacion = 0;
     if (diametro >=200) {
       noLoop();
+      
     }
   }
 }
