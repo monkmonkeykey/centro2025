@@ -6,9 +6,15 @@ void setup() {
 }
 //Intenta dibujar 60 veces por segundo su contenido
 void draw() {
-  image(imagen, 0, 0);
+  //image(imagen, 0, 0);
+  dibujaPuntillismo();
+}
+
+void dibujaPuntillismo() {
   int posX = int(random(width));
   int posY = int(random(height));
-  
-  ellipse(posX, posY, 50, 50);
+  color c = imagen.get(posX, posY);
+  fill(c);
+  noStroke();
+  ellipse(posX, posY, 5, 5);
 }
