@@ -3,6 +3,7 @@ PImage imagen;  //es el tipo de dato con el cual usamos img
 void setup() {
   size(1280, 720);
   imagen = loadImage("3.jpg");
+  frameRate(10000);
 }
 //Intenta dibujar 60 veces por segundo su contenido
 void draw() {
