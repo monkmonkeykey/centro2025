@@ -9,7 +9,6 @@ void draw() {
   //image(imagen, 0, 0);
   dibujaPuntillismo();
 }
-
 void dibujaPuntillismo() {
   int posX = int(random(width));
   int posY = int(random(height));
@@ -17,4 +16,4 @@ void dibujaPuntillismo() {
   fill(c);
   noStroke();
   ellipse(posX, posY, 5, 5);
-}
+}s
