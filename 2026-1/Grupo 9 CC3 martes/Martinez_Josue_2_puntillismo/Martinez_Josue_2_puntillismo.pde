@@ -8,7 +8,7 @@ void setup() {
 }
 void draw() {
   //puntillismoPunto();
-  puntillismoLetra(" hola");
+  puntillismoLetra("hola");
 }
 void puntillismoLetra(String texto) {
   for (int i = 0; i <60; i++) {
@@ -17,8 +17,7 @@ void puntillismoLetra(String texto) {
     color colorActual = imagen.get(posX, posY);
     fill(colorActual);
     int valorActual = int(random(1, texto.length()));
-    println(valorActual);
-    text(texto.substring(valorActual, 5), posX, posY);
+    text(texto.charAt(valorActual), posX, posY);
   }
 }
 
