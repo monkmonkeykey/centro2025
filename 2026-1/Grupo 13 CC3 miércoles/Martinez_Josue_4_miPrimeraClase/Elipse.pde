@@ -4,6 +4,7 @@ class Elipse {
   int diametro;
   int velX;
   int velY;
+  color colorActual; //Definir el color a nuestro Elipse
   //Constructor | Sirve para construir nuestro objeto con las carac. que definimos
   //Pensemos en un molde fijo
   Elipse() {
@@ -12,10 +13,12 @@ class Elipse {
     diametro = 50;
     velX = 2;
     velY = 2;
+    colorActual = #D84646;
   }
 
   //Método = Función = Acción | ar, er, ir
   void dibujar() {
+    fill(colorActual);
     ellipse(posX, posY, diametro, diametro);
   }
   void vibrar() {

@@ -7,6 +7,7 @@ void setup() {
 }
 
 void draw() {
+  noStroke();
   //Llamamos a la funciones, acciones, métodos que creamos
   e1.dibujar();
   e1.vibrar();

@@ -3,7 +3,7 @@ import processing.video.*;
 Capture camara; //Este dato/Objeto nos permite capturar la imagen de algo
 String [] camaras = Capture.list(); //Cadena texto donde se guardarán las cámaras disponibles
 PFont fuente;//Cargar y usar fonts
-String texto = "mafufi";
+String texto = "ml";
 int escala = 10;
 int filas, columnas;
 void setup() {

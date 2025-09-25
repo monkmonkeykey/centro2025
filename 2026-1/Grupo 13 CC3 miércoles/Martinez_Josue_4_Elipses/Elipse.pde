@@ -1,10 +1,13 @@
 class Elipse {
   //Definir los campos
-  int posX, posY, diametro, velX, velY;
-  color colorActual;
-  int targetX, targetY;
-  float factorEasing;
+  int posX, posY;
+  int diametro;
+  int velX;
+  int velY;
+  color colorActual; //Definir el color a nuestro Elipse
+  SoundFile audio;
   //Constructor | Sirve para construir nuestro objeto con las carac. que definimos
+
   //Pensemos en un molde fijo
   Elipse() {
     posX = 50;
@@ -12,17 +15,17 @@ class Elipse {
     diametro = 50;
     velX = 2;
     velY = 2;
+    colorActual = #D84646;
   }
-  //Constructor | Sirve para construir nuestro objeto con las carac. que definimos
-  //Pensemos en un molde fijo
-  Elipse(int posX, int posY, int diametro, int velX, int velY, color colorActual) {
-    this.posX = posX;
+  //Sobrecarga de método
+  Elipse(int posX, int posY, int diametro, int velX, int velY, color colorActual, SoundFile audio) {
+    this.posX = posX; //Obtenemos momentamente el valor de posX que asignaremos
     this.posY = posY;
     this.diametro = diametro;
     this.velX = velX;
     this.velY = velY;
     this.colorActual = colorActual;
-    factorEasing = 0.1;
+    this.audio = audio;
   }
 
   //Método = Función = Acción | ar, er, ir
@@ -37,9 +40,11 @@ class Elipse {
   void rebotar() {
     if (posX >= width-diametro/2 || posX <= diametro/2) {
       velX = velX *-1;
+      reproducirAudio();
       println("rebota x");
     } else  if (posY >= height-diametro || posY <= diametro) {
       velY = velY *-1;
+      reproducirAudio();
       println("rebota y");
     }
   }
@@ -47,10 +52,11 @@ class Elipse {
     posX = posX + velX;
     posY = posY + velY;
   }
-  void easing() {
-    targetX = mouseX;//El punto donde queremos llegar
-    targetY = mouseY;
-    posX += (targetX - posX) * factorEasing;
-    posY += (targetY - posY) * factorEasing;
+  void reproducirAudio() {
+    audio.play();
+  }
+  void dibujarGif() {
+    imageMode(CENTER);
+    image(animacion, posX, posY, diametro* 0.85, diametro* 0.85);
   }
 }

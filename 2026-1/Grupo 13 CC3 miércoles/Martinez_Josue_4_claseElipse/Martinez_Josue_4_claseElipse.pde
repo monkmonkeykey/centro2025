@@ -1,7 +1,7 @@
 int posX, posY, velX, velY, diametro;
 
 color [] colores = {#29555A, #47A751, #6F47A7, #47A797, #BF403A, #E0DC5B};
-Elipse [] elipses= new Elipse[10000]; //definimos un array de Pelota y le indicamos su longitud
+Elipse [] elipses= new Elipse[100]; //definimos un array de Pelota y le indicamos su longitud
 
 void setup() {
   //size(600, 600);
@@ -23,7 +23,7 @@ void setup() {
 void draw() {
   background(0);
   for (int j = 0; j < elipses.length; j++) {
+    elipses[j].easing();
     elipses[j].dibujar();
-    elipses[j].vibrar();
   }
 }
